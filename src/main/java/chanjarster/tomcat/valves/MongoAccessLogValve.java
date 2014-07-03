@@ -153,11 +153,6 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
 
 
   /**
-   * enabled this component
-   */
-  protected boolean enabled = true;
-
-  /**
    * The pattern used to format our access log lines.
    */
   protected String pattern = null;
@@ -190,12 +185,6 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
    */
   protected String conditionIf = null;
 
-  /**
-   * Character set used by the log file. If it is <code>null</code>, the
-   * system default character set will be used. An empty string will be
-   * treated as <code>null</code> when this property is assigned.
-   */
-  protected String encoding = null;
 
   /**
    * Don't log the request matches the patterns
@@ -258,13 +247,6 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
   // ------------------------------------------------------------- Properties
 
   /**
-   * @return Returns the enabled.
-   */
-  public boolean getEnabled() {
-      return enabled;
-  }
-
-  /**
    * {@inheritDoc}
    */
   @Override
@@ -278,14 +260,6 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
   @Override
   public boolean getRequestAttributesEnabled() {
       return requestAttributesEnabled;
-  }
-
-  /**
-   * @param enabled
-   *            The enabled to set.
-   */
-  public void setEnabled(boolean enabled) {
-      this.enabled = enabled;
   }
 
   /**
@@ -429,29 +403,6 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
       this.conditionIf = condition;
   }
 
-  /**
-   * Return the character set name that is used to write the log file.
-   *
-   * @return Character set name, or <code>null</code> if the system default
-   *  character set is used.
-   */
-  public String getEncoding() {
-      return encoding;
-  }
-
-  /**
-   * Set the character set that is used to write the log file.
-   *
-   * @param encoding The name of the character set.
-   */
-  public void setEncoding(String encoding) {
-      if (encoding != null && encoding.length() > 0) {
-          this.encoding = encoding;
-      } else {
-          this.encoding = null;
-      }
-  }
-
   // --------------------------------------------------------- Public Methods
 
   /**
@@ -483,7 +434,7 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
 
   @Override
   public void log(Request request, Response response, long time) {
-      if (!getState().isAvailable() || !getEnabled() || logElements == null
+      if (!getState().isAvailable() || logElements == null
               || condition != null
               && null != request.getRequest().getAttribute(condition)
               || conditionIf != null

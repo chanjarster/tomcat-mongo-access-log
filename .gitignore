@@ -1,4 +1,5 @@
 *.class
+test-output
 output
 dependency-reduced-pom.xml
 target

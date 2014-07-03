@@ -16,6 +16,8 @@
  */
 package org.apache.catalina.startup;
 
+import static org.junit.Assert.fail;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -33,11 +35,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static org.junit.Assert.fail;
-
-import org.junit.After;
-import org.junit.Before;
-
 import org.apache.catalina.Container;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.LifecycleState;
@@ -51,6 +48,8 @@ import org.apache.catalina.session.ManagerBase;
 import org.apache.catalina.session.StandardManager;
 import org.apache.catalina.valves.AccessLogValve;
 import org.apache.tomcat.util.buf.ByteChunk;
+import org.junit.After;
+import org.junit.Before;
 
 /**
  * Base test case that provides a Tomcat instance for each test - mainly so we

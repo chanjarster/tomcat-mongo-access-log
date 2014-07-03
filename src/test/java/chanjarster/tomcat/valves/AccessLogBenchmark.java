@@ -3,7 +3,6 @@ package chanjarster.tomcat.valves;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
-import java.net.UnknownHostException;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -21,9 +20,6 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.junit.Test;
-
-import com.mongodb.DB;
-import com.mongodb.MongoClient;
 
 public class AccessLogBenchmark extends TomcatBaseTest {
 
