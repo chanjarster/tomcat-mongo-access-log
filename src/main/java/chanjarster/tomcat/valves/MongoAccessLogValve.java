@@ -3,7 +3,6 @@ package chanjarster.tomcat.valves;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
@@ -11,7 +10,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
-import java.util.TimeZone;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -43,13 +41,9 @@ import com.mongodb.WriteConcern;
 
 
 /**
- * Just like <code>AccessLogValve</code>, <code>MongoAccessLogValve</code> generates a web server
+ * Inspired by <code>org.apache.catalina.valves.AccessLogValve</code>, <code>MongoAccessLogValve</code> generates a web server
  * access log to a mongodb instance with the detailed line contents matching a configurable pattern.
- * The syntax of the available patterns is similar to that supported by the
- * <a href="http://httpd.apache.org/">Apache HTTP Server</a>
- * <code>mod_log_config</code> module.  As an additional feature,
- * automatic rollover of log files when the date changes is also supported.</p>
- *
+ * 
  * <p>Patterns for the logged message may include constant text or any of the
  * following replacement strings, for which the corresponding information
  * from the specified Response is substituted:</p>
@@ -125,7 +119,8 @@ import com.mongodb.WriteConcern;
  * <li>property <b>dbName</b> - MongoDB's db to store logs</li>
  * <li>property <b>collName</b> - MongoDB's collection to store logs, default is <code>tomcat_access_logs</code> </li>
  * <li>property <b>rotatable</b> - If rotatable is on this MongoDBAccessLogValve will try to create a capped collection with the size of <code>rotateCount</code>(default 1024 in megabytes) if the collection is not exist</li>
- * <li>property <b>rotateCount</b> - size of capped collection</li>
+ * <li>property <b>rotateCount</b> - Size of capped collection</li>
+ * <li>property <b>recordError</b> - When exception happends MongDBAccessLogValve will store exception information in { error : "xxx" } </li>
  * </ul>
  * </p>
  * 
@@ -154,7 +149,7 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
   /**
    * The descriptive information about this implementation.
    */
-  protected static final String info = "com.ekingstar.tomcat.MongoAccessLogValve/2.2";
+  protected static final String info = "chanjarster.tomcat.valves.MongoAccessLogValve/0.1";
 
 
   /**
@@ -166,19 +161,6 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
    * The pattern used to format our access log lines.
    */
   protected String pattern = null;
-
-
-  /**
-   * Buffered logging.
-   */
-  private boolean buffered = true;
-
-
-  /**
-   * A date formatter to format a Date using the format
-   * given by <code>fileDateFormat</code>.
-   */
-  protected SimpleDateFormat fileDateFormatter = null;
 
   /**
    * The system time when we last updated the Date that this valve
@@ -207,25 +189,6 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
    * It is the value of <code>conditionIf</code> property.
    */
   protected String conditionIf = null;
-
-  /**
-   * Date format to place in log file name.
-   */
-  protected String fileDateFormat = "yyyy-MM-dd";
-
-
-  /**
-   * Name of locale used to format timestamps in log entries and in
-   * log file name suffix.
-   */
-  protected String localeName = Locale.getDefault().toString();
-
-
-  /**
-   * Locale used to format timestamps in log entries and in
-   * log file name suffix.
-   */
-  protected Locale locale = Locale.getDefault();
 
   /**
    * Character set used by the log file. If it is <code>null</code>, the
@@ -380,25 +343,7 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
       this.rotatable = rotatable;
   }
 
-
-  /**
-   * Is the logging buffered
-   */
-  public boolean isBuffered() {
-      return buffered;
-  }
-
-
-  /**
-   * Set the value if the logging should be buffered
-   *
-   * @param buffered true if buffered.
-   */
-  public void setBuffered(boolean buffered) {
-      this.buffered = buffered;
-  }
-
-
+  
   /**
    * Set the resolve hosts flag.
    *
@@ -482,55 +427,6 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
    */
   public void setConditionIf(String condition) {
       this.conditionIf = condition;
-  }
-
-  /**
-   *  Return the date format date based log rotation.
-   */
-  public String getFileDateFormat() {
-      return fileDateFormat;
-  }
-
-
-  /**
-   *  Set the date format date based log rotation.
-   */
-  public void setFileDateFormat(String fileDateFormat) {
-      String newFormat;
-      if (fileDateFormat == null) {
-          newFormat = "";
-      } else {
-          newFormat = fileDateFormat;
-      }
-      this.fileDateFormat = newFormat;
-
-      synchronized (this) {
-          fileDateFormatter = new SimpleDateFormat(newFormat, Locale.US);
-          fileDateFormatter.setTimeZone(TimeZone.getDefault());
-      }
-  }
-
-
-  /**
-   * Return the locale used to format timestamps in log entries and in
-   * log file name suffix.
-   */
-  public String getLocale() {
-      return localeName;
-  }
-
-
-  /**
-   * Set the locale used to format timestamps in log entries and in
-   * log file name suffix. Changing the locale is only supported
-   * as long as the mongoAccessLogValve has not logged anything. Changing
-   * the locale later can lead to inconsistent formatting.
-   *
-   * @param localeName The locale to use.
-   */
-  public void setLocale(String localeName) {
-      this.localeName = localeName;
-      locale = findLocale(localeName, locale);
   }
 
   /**
@@ -738,10 +634,6 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
    */
   @Override
   protected synchronized void startInternal() throws LifecycleException {
-      // Initialize the Date formatters
-      String format = getFileDateFormat();
-      fileDateFormatter = new SimpleDateFormat(format, Locale.US);
-      fileDateFormatter.setTimeZone(TimeZone.getDefault());
       open();
       setState(LifecycleState.STARTING);
   }

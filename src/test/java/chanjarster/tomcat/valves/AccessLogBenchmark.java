@@ -1,5 +1,6 @@
 package chanjarster.tomcat.valves;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.UnknownHostException;
@@ -24,7 +25,7 @@ import org.junit.Test;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
 
-public class Benchmark extends TomcatBaseTest {
+public class AccessLogBenchmark extends TomcatBaseTest {
 
 
   private StringBuilder sb;
@@ -56,32 +57,6 @@ public class Benchmark extends TomcatBaseTest {
     });
     ctx.addServletMapping("/", "servlet");
     
-    /*
-     * prepare MongoAccessLogValve
-     */
-    String host = "localhost";
-    int port = 27017;
-    String dbName = "test_logs";
-    String collName = "tomcat_access_logs";
-    
-    // drop existed collection
-    MongoClient mongoClient = null;
-    DB db = null;
-    try {
-      mongoClient = new MongoClient(host, port);
-      db = mongoClient.getDB(dbName);
-      db.getCollection(collName).drop();
-    } catch (UnknownHostException ex) {
-      
-    }
-    
-    MongoAccessLogValve mavl = new MongoAccessLogValve();
-    mavl.setHost(host);
-    mavl.setPort(port);
-    mavl.setDbName(dbName);
-    mavl.setCollName(collName);
-    mavl.setPattern("default");
-    
     // clear AccessLogValve
     for (Valve vl : tomcat.getHost().getPipeline().getValves()) {
       if (vl.getClass().equals(AccessLogValve.class)) {
@@ -89,7 +64,15 @@ public class Benchmark extends TomcatBaseTest {
       }
     }
     
-    tomcat.getHost().getPipeline().addValve(mavl);
+    String accessLogDirectory = System.getProperty("tomcat.test.reports");
+    if (accessLogDirectory == null) {
+      accessLogDirectory = new File(getBuildDirectory(), "logs").toString();
+    }
+    AccessLogValve alv = new AccessLogValve();
+    alv.setDirectory(accessLogDirectory);
+    alv.setPattern("combined");
+
+    tomcat.getHost().getPipeline().addValve(alv);
     
     this.sb = new StringBuilder();
   }

@@ -1,4 +1,5 @@
 *.class
+output
 dependency-reduced-pom.xml
 target
 .project
