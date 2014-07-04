@@ -207,8 +207,8 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
           this.pattern = Constants.AccessLog.COMMON_PATTERN;
       } else if (pattern.equals(Constants.AccessLog.COMBINED_ALIAS)) {
           this.pattern = Constants.AccessLog.COMBINED_PATTERN;
-      } else if (pattern.equals(chanjarster.tomcat.valves.Constants.MongAccessLog.DEFAULT_ALIAS)) {
-          this.pattern = chanjarster.tomcat.valves.Constants.MongAccessLog.DEFAULT_PATTERN;
+      } else if (pattern.equals(chanjarster.tomcat.valves.Constants.MongoAccessLog.DEFAULT_ALIAS)) {
+          this.pattern = chanjarster.tomcat.valves.Constants.MongoAccessLog.DEFAULT_PATTERN;
       } else {
           this.pattern = pattern;
       }

@@ -40,19 +40,11 @@ public class MongoLogBenchmark extends TomcatBaseTest {
       
       @Override
       public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
-        req.getParameterNames();
+//        req.getParameterNames();
         res.setContentType("text/plain; charset=ISO-8859-1");
         res.getWriter().write("OK");
-        try {
-          f();
-        } catch ( Exception e) {
-//          throw new RuntimeException(e);
-        }
       }
       
-      private void f() {
-        throw new RuntimeException("sfaasfsdf");
-      }
     });
     ctx.addServletMapping("/", "servlet");
     
@@ -80,9 +72,9 @@ public class MongoLogBenchmark extends TomcatBaseTest {
     mavl.setPort(port);
     mavl.setDbName(dbName);
     mavl.setCollName(collName);
-    mavl.setPattern("default");
+    mavl.setPattern("%P");
     
-    // clear AccessLogValve
+    // remove AccessLogValve
     for (Valve vl : tomcat.getHost().getPipeline().getValves()) {
       if (vl.getClass().equals(AccessLogValve.class)) {
         tomcat.getHost().getPipeline().removeValve(vl);
@@ -119,7 +111,7 @@ public class MongoLogBenchmark extends TomcatBaseTest {
         .build();
     
 
-    int[] iterationsArray = {/*100, 1000,*/ 10000};
+    int[] iterationsArray = {/*100, 1000,*/ 1};
 
     for(int iterations : iterationsArray) {
       long start = System.currentTimeMillis();
