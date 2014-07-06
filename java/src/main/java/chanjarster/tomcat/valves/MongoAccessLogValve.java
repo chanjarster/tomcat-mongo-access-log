@@ -883,7 +883,7 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
    * write All Parameters - %P { "params" : { "param1" : "xxx", "param2: "xxx" } }<br>
    * . will be replaced to $ if parameter name contains dot
    */
-  protected static class ParametersElement implements AccessLogElement {
+  protected static class RequestParametersElement implements AccessLogElement {
       @Override
       public void addElement(StringBuilder buf, DBObject result, Date date, Request request,
               Response response, long time) {
@@ -1391,7 +1391,7 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
       case 'I':
           return new ThreadNameElement();
       case 'P':
-          return new ParametersElement();
+          return new RequestParametersElement();
       default:
           return NoopElement.INSTANCE;
       }
