@@ -1,0 +1,6 @@
+{
+  "mongo" : {
+    "url" : "mongodb://localhost/test_logs",
+    "collection" : "tomcat_access_logs"
+  }
+}

@@ -40,7 +40,7 @@ public class MongoLogBenchmark extends TomcatBaseTest {
       
       @Override
       public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
-//        req.getParameterNames();
+        req.getParameterNames();
         res.setContentType("text/plain; charset=ISO-8859-1");
         res.getWriter().write("OK");
       }
@@ -72,7 +72,7 @@ public class MongoLogBenchmark extends TomcatBaseTest {
     mavl.setPort(port);
     mavl.setDbName(dbName);
     mavl.setCollName(collName);
-    mavl.setPattern("%P");
+    mavl.setPattern("default");
     
     // remove AccessLogValve
     for (Valve vl : tomcat.getHost().getPipeline().getValves()) {
@@ -111,7 +111,7 @@ public class MongoLogBenchmark extends TomcatBaseTest {
         .build();
     
 
-    int[] iterationsArray = {/*100, 1000,*/ 1};
+    int[] iterationsArray = {1000};
 
     for(int iterations : iterationsArray) {
       long start = System.currentTimeMillis();
