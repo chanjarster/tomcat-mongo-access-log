@@ -156,7 +156,7 @@
 	            </div>
             
               <div class="col-lg-3">
-                <label for="sessionId">SessionId</label>
+                <label for="sessionId">Session ID</label>
                 <input type="text" class="form-control" id="sessionId" name="sessionId" placeholder="Enter SessionID">
               </div>
               
@@ -192,7 +192,7 @@
         
         <div class="col-lg-offset-4 col-lg-4 text-center">
           <button id="btn-do-query" class="btn btn-primary">Query</button>
-          <button id="btn-chart" class="btn btn-primary">Chart</button>
+<!--           <button id="btn-chart" class="btn btn-primary">Chart</button> -->
           
           <button id="btn-toggle-query-form" class="btn btn-default">Close</button>
         </div>
@@ -214,10 +214,9 @@
             <table id="logs" class="table table-striped">
               <thead>
                 <tr>
-                  <th width="5%">#</th>
                   <th width="15%">Date Time</th>
-                  <th width="8%">Method</th>
-                  <th width="12%">URL</th>
+                  <th width="10%">Method</th>
+                  <th width="15%">URL</th>
                   <th width="10%">Status Code</th>
                   <th width="10%">Remote IP</th>
                   <th width="10%">User</th>
@@ -237,6 +236,30 @@
       </div><!-- .row -->
     </div>
     
+    <!-- Detail Info Modal -->
+		<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby=""requestDetail"" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="requestDetail">Request Detail</h4>
+		      </div>
+		      <div class="modal-body">
+		      
+		        <div class="table-responsive">
+              <table id="logs" class="table table-bordered">
+                
+              </table>
+            </div>
+            
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
   </body>
   <script src='/jquery/dist/jquery.min.js' type='text/javascript'></script>
   <script src='/bootstrap/dist/js/bootstrap.min.js' type='text/javascript'></script>
@@ -246,5 +269,6 @@
   <script src='/underscore/underscore.js'></script>
   <script src='/backbone/backbone.js'></script>
   
+  <script src='/requirejs/require.js'></script>
   <script src='/javascripts/index.js' type='text/javascript'></script>
 </html>

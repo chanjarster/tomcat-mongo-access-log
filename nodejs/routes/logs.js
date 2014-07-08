@@ -82,6 +82,8 @@ router.get('/', function(req, res) {
     
   });
   
+  console.log(queryObject);
+  
   collection.find(queryObject).count(function(err, count) {
     
     collection.find(queryObject).skip((pageNo - 1) * limit).limit(limit).toArray(function(err, results) {
@@ -111,7 +113,7 @@ var toDate = function(datestring) {
 };
 
 var filterRegexCharacter = function(string) {
-  _.each(['.', '(', ')', '[', ']', '^', '$', '\\'], function(c) {
+  _.each(['\\', '.', '(', ')', '[', ']', '^', '$'], function(c) {
      string = string.replace(new RegExp('\\' + c, 'g'), '\\' + c);
   });
   return string;
