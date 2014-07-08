@@ -46,7 +46,34 @@ router.get('/', function(req, res) {
       return;
     }
     
-    // TODO status code
+    if (key == 'statusCode') {
+      if ('1XX' == queryObject['statusCode']) {
+        queryObject['statusCode'] = {};
+        queryObject['statusCode']['$gte'] = 100;
+        queryObject['statusCode']['$lte'] = 199;
+      }
+      if ('2XX' == queryObject['statusCode']) {
+        queryObject['statusCode'] = {};
+        queryObject['statusCode']['$gte'] = 200;
+        queryObject['statusCode']['$lte'] = 299;
+      }
+      if ('3XX' == queryObject['statusCode']) {
+        queryObject['statusCode'] = {};
+        queryObject['statusCode']['$gte'] = 300;
+        queryObject['statusCode']['$lte'] = 399;
+      }
+      if ('4XX' == queryObject['statusCode']) {
+        queryObject['statusCode'] = {};
+        queryObject['statusCode']['$gte'] = 400;
+        queryObject['statusCode']['$lte'] = 499;
+      }
+      if ('5XX' == queryObject['statusCode']) {
+        queryObject['statusCode'] = {};
+        queryObject['statusCode']['$gte'] = 500;
+        queryObject['statusCode']['$lte'] = 599;
+      }
+      return;
+    }
     
     // convert string to regex
     if (_.isString(value)) {
