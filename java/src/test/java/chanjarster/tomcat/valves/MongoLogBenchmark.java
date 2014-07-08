@@ -3,6 +3,7 @@ package chanjarster.tomcat.valves;
 import java.io.IOException;
 import java.net.URI;
 import java.net.UnknownHostException;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -100,22 +101,23 @@ public class MongoLogBenchmark extends TomcatBaseTest {
     tomcat.start();
     
     CloseableHttpClient httpclient = HttpClients.createDefault();
-    String uri = "http://localhost:" + tomcat.getConnector().getLocalPort() + "/";
-    HttpUriRequest post = RequestBuilder.post()
-        .setUri(new URI(uri))
-        .addParameter("IDToken1", "username")
-        .addParameter("IDToken2", "password")
-        .addParameter("IDToken3", "password")
-        .addParameter("IDToken4", "password")
-        .addParameter("IDToken5", "password")
-        .build();
     
-
-    int[] iterationsArray = {1000};
-
+    int[] iterationsArray = {100};
+    
+    String[] uris = {"/", "/abc", "/sdefe", "wefew"};
+    String[] paramNames = {"student.id", "lesson.id", "course.name", "course.code"};
+    String[] paramValues = {"1212", "12D00A", "870102", "322344", "2344545"};
+    
+    Random r = new Random();
     for(int iterations : iterationsArray) {
       long start = System.currentTimeMillis();
       for (int i = 0; i < iterations; i++) {
+        String uri = "http://localhost:" + tomcat.getConnector().getLocalPort() + uris[r.nextInt(4)];
+        RequestBuilder rb = RequestBuilder.post().setUri(new URI(uri));
+        for(int j = 0; j < r.nextInt(4); j++) {
+          rb.addParameter(paramNames[r.nextInt(4)], paramValues[r.nextInt(4)]);
+        }
+        HttpUriRequest post = rb.build();
         doRequest(httpclient, post);
       }
       long end = System.currentTimeMillis();
