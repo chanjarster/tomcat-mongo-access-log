@@ -20,6 +20,7 @@ public class PostGenerator {
           paramValues[r.nextInt(paramValues.length)]
       );
     }
+    rb.addHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
     return rb.build();
   }
   
@@ -64,10 +65,10 @@ public class PostGenerator {
   protected static final String[] paramValues = {
     "3971212", 
     "12D000A", 
-    "87079102", 
-    "32dfd344", 
-    "234asdf545",
-    "2013-2014-2",
+    "C++程序语言", 
+    "中文入门", 
+    "国家地理",
+    "大学语文",
     "大学英语",
     "大学数学",
     "大学物理",

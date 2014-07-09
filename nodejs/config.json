@@ -1,7 +1,6 @@
 {
   "mongo" : {
-    // refer to http://mongodb.github.io/node-mongodb-native/driver-articles/mongoclient.html#the-url-connection-format
-    "url" : "mongodb://localhost/test_logs",
-    "collection" : "tomcat_access_logs"
+    "url" : "mongodb://localhost/logs",
+    "collection" : "access_logs"
   }
 }
