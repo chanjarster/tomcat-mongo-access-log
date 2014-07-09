@@ -81,4 +81,7 @@ All the pattern of ``AccessLogValve`` are supported while ``MongoAccessLogValve`
 
 The shorthand patterns ``common`` and ``combined`` are also supported.
 
-And ``MongoAccessLogValve`` provide a ``default`` pattern which is equivalent to `` %a %b %l %m %s %S %t %U %T %P %{Referer}i %{User-Agent}i``
+And ``MongoAccessLogValve`` provides two more shorthand patterns:
+
+1. ``default`` equivalent to `` %a %b %l %m %s %S %t %U %T %P %{Referer}i %{User-Agent}i``
+2. ``all`` equivalent to ``%a %A %b %B %h %H %l %m %p %q %r %s %S %t %u %U %v %D %T %I %P %{Referer}i %{User-Agent}i``

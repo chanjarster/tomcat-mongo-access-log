@@ -21,6 +21,8 @@ public class MongoLogBenchmark extends AbstractValveTest {
   String url = "mongodb://localhost";
   String dbName = "test_logs";
   String collName = "tomcat_access_logs";
+  String pattern = "all";
+  
   MongoClient mongoClient = null;
   DB db = null;
   
@@ -40,7 +42,7 @@ public class MongoLogBenchmark extends AbstractValveTest {
     mavl.setUri(url);
     mavl.setDbName(dbName);
     mavl.setCollName(collName);
-    mavl.setPattern("default");
+    mavl.setPattern(pattern);
     
     tomcat.getHost().getPipeline().addValve(mavl);
   }
