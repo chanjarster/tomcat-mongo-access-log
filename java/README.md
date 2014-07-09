@@ -1,4 +1,4 @@
-tomcat-mongo-access-log
+MongoAccessLogValve
 =======================
 
 ``MongoAccessLogValve`` is use to save tomcat access log to mongodb.
