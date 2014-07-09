@@ -1,6 +1,6 @@
 *.class
 test-output
-output
+output/logs
 dependency-reduced-pom.xml
 target
 .project
