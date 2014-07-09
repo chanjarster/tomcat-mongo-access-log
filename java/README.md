@@ -42,6 +42,34 @@ And some attributes differs from ``AccessLogValve``:
 | rotateCount | **Not supported** |
 | recordError | Default is true. ``MongoAccessLogValve`` will store exception stack traces in ``error`` key when exception throws |
 
+### Collection Indexes
+
+While it's hard to determine which fields should be indexed, but ``MongoAccessLogVavle`` provide the following indexes when it creates the Collection, so the query performance is not guaranteed. May be it's better to determine how to create index by yourself.  
+
+```javascript
+{ sessionId : 1}
+{ datetime : -1}
+{ user : 1}
+{ statusCode : 1}
+{ elapsedSeconds : 1}
+{ elapsedMilliseconds : 1}
+{ bytesSent : 1}
+{ url : 1}
+{ method : 1}
+
+{ url : 1, datetime : -1}
+
+{ user : 1, statusCode : 1}
+{ user : 1, datetime : -1}
+{ user : 1, sessionId : 1, statusCode : 1, datetime : -1}
+{ user : 1, sessionId : 1, url : 1, statusCode : 1, datetime : -1}
+
+{ sessionId : 1, datetime : -1}
+{ sessionId : 1, statusCode : 1}
+{ sessionId : 1, statusCode : 1, datetime : -1}
+{ sessionId : 1, url : 1, statusCode : 1, datetime : -1}
+```
+
 ## Patterns
 
 All the pattern of ``AccessLogValve`` are supported while ``MongoAccessLogValve`` save them in a JSON form.
