@@ -1,6 +1,6 @@
 <tbody>
   <tr>
-    <td width="30%"><strong>Date Time: </strong></td>
+    <td width="200px"><strong>Date Time: </strong></td>
     <td>
         <%- d.datetime %>
     </td>
@@ -118,9 +118,15 @@
     <td>
       <% if(d.params) { %>
         <% _.each(d.params, function(value, key) { %>
-          <%- key.replace(/\$/, '.') %>=<%- value %> <br>
+          <%- key.replace(/\$/g, '.') %>=<%- value %> <br>
         <% }); %> 
       <% } %>
     </td>
   </tr>
+  <% if(d.error) { %>
+  <tr>
+    <td><strong>Error: </strong></td>
+    <td><pre><%= d.error %></pre></td>
+  </tr>
+  <% } %>
 </tbody>

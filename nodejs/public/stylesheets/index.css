@@ -113,3 +113,12 @@ body {
 	font-size : 14px;
 }
 
+.bootstrap-tagsinput .form-control {
+	height : auto;
+}
+.modal-lg {
+	width : 90%;
+}
+#detailModal td {
+	vertical-align: top;
+}

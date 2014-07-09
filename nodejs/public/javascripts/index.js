@@ -7,8 +7,6 @@ require(
         /*
          * UI component
          */
-        // tagsinput
-        $('.bootstrap-tagsinput').addClass('form-control').css('height', 'auto');
         
         // datepicker
         $('#datetime\\.start').datepicker({
@@ -132,7 +130,7 @@ require(
           },
           
           info : function() {
-            $("#detailModal .modal-body").html(detailTemplate( { d : this.model }));
+            $("#detailModal table").html(detailTemplate( { d : this.model }));
             $("#detailModal").modal();
           }
           
