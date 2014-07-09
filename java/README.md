@@ -3,6 +3,11 @@ MongoAccessLogValve
 
 ``MongoAccessLogValve`` is use to save tomcat access log to mongodb.
 
+This project is inspired by two articles:
+
+1. [MongoDB is fantastic for logging](http://blog.mongodb.org/post/172254834/mongodb-is-fantastic-for-logging)
+2. [MongoDB use case - storing log data](http://docs.mongodb.org/ecosystem/use-cases/storing-log-data/)
+
 ## Usage
 
 Clone the code and built it with maven, copy the ``tomcat-mongo-access-log-${version}.jar`` to ``${TOMCAT_HOME}/lib``.
