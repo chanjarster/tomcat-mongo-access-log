@@ -37,6 +37,7 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import com.mongodb.WriteConcern;
 
 
@@ -110,22 +111,17 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
   protected String[] excludePatterns = {".js", ".css", ".jpeg", ".jpg", ".gif", ".png", ".bmp", ".gif", ".html", ".htm"};
   
   /**
-   * MongoDB host
+   * MongoDB uri. See <a>http://api.mongodb.org/java/current/com/mongodb/MongoClientURI.html</a>
    */
-  protected String host;
+  protected String uri;
   
   /**
-   * MongoDB port. Default is 
+   * Which db to store access logs. Default is tomcat
    */
-  protected int port = 27017;
+  protected String dbName = "tomcat";
   
   /**
-   * Which DB should we use
-   */
-  protected String dbName;
-  
-  /**
-   * Which Collection should we use? Default is tomcat_access_logs
+   * Which Collection to store access logs. Default is tomcat_access_logs
    */
   protected String collName = "tomcat_access_logs";
   
@@ -138,7 +134,7 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
   /**
    * MongoDB collection's max size(in megabytes), Default is 1024
    */
-  protected int rotateCount = 1024;
+  protected int capSize = 1024;
   
   /**
    * MongoDB collection instance
@@ -430,11 +426,10 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
     MongoClient mongoClient = null;
     DB db = null;
     try {
-      mongoClient = new MongoClient(this.host, this.port);
+      mongoClient = new MongoClient(new MongoClientURI(this.uri));
       db = mongoClient.getDB(this.dbName);
     } catch (UnknownHostException ex) {
-      log.error(sm.getString("mongoAccessLogValve.openConnectionError", this.host, String.valueOf(this.port),
-          this.dbName, this.collName), ex);
+      log.error(sm.getString("mongoAccessLogValve.openConnectionError", this.uri), ex);
       throw new RuntimeException(ex);
     }
     
@@ -442,7 +437,7 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
       if (this.rotatable) {
         DBObject options = new BasicDBObject();
         options.put("capped", true);
-        options.put("size", this.rotateCount * 1024 * 1024);
+        options.put("size", this.capSize * 1024 * 1024);
         this.coll = db.createCollection(this.collName, options);
       } else {
         this.coll = db.getCollection(this.collName);
@@ -456,9 +451,7 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
       ExceptionUtils.handleThrowable(ex);
     } catch (Exception ex) {
       log.error(sm.getString(
-          "mongoAccessLogValve.openConnectionError", 
-          this.host, String.valueOf(this.port), this.dbName, this.collName
-      ), ex);
+          "mongoAccessLogValve.openConnectionError", this.uri), ex);
     }
   }
 
@@ -1152,7 +1145,7 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
   }
 
   /**
-   * write a specific response header - %{xxx} {"responseHeaders" : { "header1" : "xxx", "header2" : "xxx"} }
+   * write a specific response header - %{xxx}o {"responseHeaders" : { "header1" : "xxx", "header2" : "xxx"} }
    */
   protected static class ResponseHeaderElement implements AccessLogElement {
       private final String header;
@@ -1397,36 +1390,12 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
       }
   }
 
-  public void setPort(int port) {
-    this.port = port;
-  }
-
-  public int getRotateCount() {
-    return rotateCount;
-  }
-
-  public void setRotateCount(int rotateCount) {
-    this.rotateCount = rotateCount;
-  }
-
-  public void setHost(String host) {
-    this.host = host;
-  }
-
-  public void setDbName(String dbName) {
-    this.dbName = dbName;
+  public void setCapSize(int capSize) {
+    this.capSize = capSize;
   }
 
   public void setCollName(String collName) {
     this.collName = collName;
-  }
-
-  public String getHost() {
-    return host;
-  }
-
-  public String getDbName() {
-    return dbName;
   }
 
   public String getCollName() {
@@ -1443,6 +1412,14 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
 
   public void setRecordError(boolean recordError) {
     this.recordError = recordError;
+  }
+
+  public void setUri(String uri) {
+    this.uri = uri;
+  }
+
+  public void setDbName(String dbName) {
+    this.dbName = dbName;
   }
 
 }
