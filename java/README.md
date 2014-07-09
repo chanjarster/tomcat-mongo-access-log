@@ -14,7 +14,7 @@ Example:
 ```xml
 <Valve 
     className="chanjarster.tomcat.valves.MongoAccessLogValve" 
-    url="mongodb://localhost/tomcat"
+    uri="mongodb://localhost/tomcat"
     pattern="default" />
 ```
 
