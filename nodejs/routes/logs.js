@@ -86,7 +86,7 @@ router.get('/', function(req, res) {
   
   collection.find(queryObject).count(function(err, count) {
     
-    collection.find(queryObject).skip((pageNo - 1) * limit).limit(limit).toArray(function(err, results) {
+    collection.find(queryObject).skip((pageNo - 1) * limit).limit(limit).sort( { datetime : -1 } ).toArray(function(err, results) {
       if (err) {
         throw err;
       }

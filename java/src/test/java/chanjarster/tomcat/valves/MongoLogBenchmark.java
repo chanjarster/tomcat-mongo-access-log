@@ -51,8 +51,8 @@ public class MongoLogBenchmark extends AbstractValveTest {
   public void tearDown() throws Exception {
     super.tearDown();
     // drop collection
-//    db.getCollection(collName).drop();
-//    db.dropDatabase();
+    db.getCollection(collName).drop();
+    db.dropDatabase();
   }
   
   @Test

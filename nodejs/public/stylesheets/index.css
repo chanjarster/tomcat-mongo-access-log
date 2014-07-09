@@ -113,8 +113,10 @@ body {
 	font-size : 14px;
 }
 
-.bootstrap-tagsinput .form-control {
+.form-group .bootstrap-tagsinput {
 	height : auto;
+	width : 100%;
+	line-height : 24px;
 }
 .modal-lg {
 	width : 90%;
