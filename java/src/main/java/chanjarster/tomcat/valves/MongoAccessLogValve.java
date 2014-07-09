@@ -428,36 +428,9 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
       return;
     }
     
-    MongoClient mongoClient = null;
-    DB db = null;
-    try {
-      mongoClient = new MongoClient(new MongoClientURI(this.uri));
-      db = mongoClient.getDB(this.dbName);
-    } catch (UnknownHostException ex) {
-      log.error(sm.getString("mongoAccessLogValve.openConnectionError", this.uri), ex);
-      throw new RuntimeException(ex);
-    }
+    this.coll = CollectionFactory.getOrCreateCollection(this.uri, this.dbName, this.collName, this.rotatable, this.capSize, this.log, this.sm);
     
-    try {
-      if (this.rotatable) {
-        DBObject options = new BasicDBObject();
-        options.put("capped", true);
-        options.put("size", this.capSize * 1024 * 1024);
-        this.coll = db.createCollection(this.collName, options);
-      } else {
-        this.coll = db.getCollection(this.collName);
-      }
-    } catch (com.mongodb.CommandFailureException ex) {
-      String errmsg = (String) ex.getCommandResult().get("errmsg");
-      if ("collection already exists".equals(errmsg)) {
-        log.info(sm.getString("mongoAccessLogValve.collectionExisted", this.collName));
-        this.coll = db.getCollection(this.collName);
-      }
-      ExceptionUtils.handleThrowable(ex);
-    } catch (Exception ex) {
-      log.error(sm.getString(
-          "mongoAccessLogValve.openConnectionError", this.uri), ex);
-    }
+    
   }
 
   /**
