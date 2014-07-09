@@ -1,0 +1,126 @@
+<tbody>
+  <tr>
+    <td width="30%"><strong>Date Time: </strong></td>
+    <td>
+        <%- d.datetime %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Method: </strong></td>
+    <td>
+        <%- d.method %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>URL: </strong></td>
+    <td>
+        <%- d.url %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Status Code: </strong></td>
+    <td>
+        <%- d.statusCode %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>User: </strong></td>
+    <td>
+        <%- d.user %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Remote User: </strong></td>
+    <td>
+        <%- d.remoteUser %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Elapsed Seconds: </strong></td>
+    <td>
+        <%- d.elapsedSeconds %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Elapsed Milliseconds: </strong></td>
+    <td>
+        <%- d.elapsedMillis %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Local IP: </strong></td>
+    <td>
+        <%- d.localIP %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Local Port: </strong></td>
+    <td>
+        <%- d.localPort %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Server Name: </strong></td>
+    <td>
+        <%- d.serverName %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Remote IP: </strong></td>
+    <td>
+        <%- d.remoteIP %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Remote Host: </strong></td>
+    <td>
+        <%- d.remoteHost %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Protocol: </strong></td>
+    <td>
+        <%- d.protocol %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Bytes Sent: </strong></td>
+    <td>
+        <%- d.bytesSent %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Thread: </strong></td>
+    <td>
+        <%- d.thread %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Session ID: </strong></td>
+    <td>
+        <%- d.sessionId %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Query String: </strong></td>
+    <td>
+        <%- d.queryString %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>First line of the request: </strong></td>
+    <td>
+        <%- d.line1st %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Request Params: </strong></td>
+    <td>
+      <% if(d.params) { %>
+        <% _.each(d.params, function(value, key) { %>
+          <%- key.replace(/\$/, '.') %>=<%- value %> <br>
+        <% }); %> 
+      <% } %>
+    </td>
+  </tr>
+</tbody>
