@@ -1,14 +1,12 @@
 <tbody>
   <tr>
-    <td width="30%"><strong>Date Time: </strong></td>
+    <td width="15%"><strong>Date Time: </strong></td>
     <td>
         <%- d.datetime %>
     </td>
-  </tr>
-  <tr>
-    <td><strong>Method: </strong></td>
+    <td><strong>Status Code: </strong></td>
     <td>
-        <%- d.method %>
+        <%- d.statusCode %>
     </td>
   </tr>
   <tr>
@@ -16,22 +14,18 @@
     <td>
         <%- d.url %>
     </td>
-  </tr>
-  <tr>
-    <td><strong>Status Code: </strong></td>
+    <td><strong>Method: </strong></td>
     <td>
-        <%- d.statusCode %>
+        <%- d.method %>
     </td>
   </tr>
   <tr>
-    <td><strong>User: </strong></td>
-    <td>
+    <td width="15%"><strong>User: </strong></td>
+    <td width="35%">
         <%- d.user %>
     </td>
-  </tr>
-  <tr>
-    <td><strong>Remote User: </strong></td>
-    <td>
+    <td width='15%'><strong>Remote User: </strong></td>
+    <td width="35%">
         <%- d.remoteUser %>
     </td>
   </tr>
@@ -40,8 +34,6 @@
     <td>
         <%- d.elapsedSeconds %>
     </td>
-  </tr>
-  <tr>
     <td><strong>Elapsed Milliseconds: </strong></td>
     <td>
         <%- d.elapsedMillis %>
@@ -52,8 +44,6 @@
     <td>
         <%- d.localIP %>
     </td>
-  </tr>
-  <tr>
     <td><strong>Local Port: </strong></td>
     <td>
         <%- d.localPort %>
@@ -70,8 +60,6 @@
     <td>
         <%- d.remoteIP %>
     </td>
-  </tr>
-  <tr>
     <td><strong>Remote Host: </strong></td>
     <td>
         <%- d.remoteHost %>
@@ -82,17 +70,9 @@
     <td>
         <%- d.protocol %>
     </td>
-  </tr>
-  <tr>
     <td><strong>Bytes Sent: </strong></td>
     <td>
         <%- d.bytesSent %>
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Thread: </strong></td>
-    <td>
-        <%- d.thread %>
     </td>
   </tr>
   <tr>
@@ -100,27 +80,37 @@
     <td>
         <%- d.sessionId %>
     </td>
+    <td><strong>Thread: </strong></td>
+    <td>
+        <%- d.thread %>
+    </td>
   </tr>
   <tr>
     <td><strong>Query String: </strong></td>
-    <td>
+    <td colspan="3">
         <%- d.queryString %>
     </td>
   </tr>
   <tr>
     <td><strong>First line of the request: </strong></td>
-    <td>
+    <td colspan="3">
         <%- d.line1st %>
     </td>
   </tr>
   <tr>
     <td><strong>Request Params: </strong></td>
-    <td>
+    <td colspan="3">
       <% if(d.params) { %>
         <% _.each(d.params, function(value, key) { %>
-          <%- key.replace(/\$/, '.') %>=<%- value %> <br>
+          <%- key.replace(/\$/g, '.') %>=<%- value %> <br>
         <% }); %> 
       <% } %>
     </td>
   </tr>
+  <% if(d.error) { %>
+  <tr>
+    <td><strong>Error: </strong></td>
+    <td><pre><%= d.error %></pre></td>
+  </tr>
+  <% } %>
 </tbody>

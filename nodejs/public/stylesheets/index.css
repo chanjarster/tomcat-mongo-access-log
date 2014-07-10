@@ -104,6 +104,9 @@ body {
   border-radius: 50%;
 }
 
+/*
+ * custom css
+ */
 .half-width {
 	width : 45%;
 	display : inline;
@@ -113,3 +116,26 @@ body {
 	font-size : 14px;
 }
 
+.form-group .bootstrap-tagsinput {
+	height : auto;
+	width : 100%;
+	line-height : 24px;
+}
+.modal-lg {
+	width : 90%;
+}
+#detailModal td {
+	vertical-align: top;
+}
+
+.stickyBar {
+	background: #FFFFFF;
+  position: fixed;
+  top: 50px;
+  width: 100%;
+  z-index: 1;
+}
+
+.stickyBarBuddy {
+	padding-top: 39px;
+}
