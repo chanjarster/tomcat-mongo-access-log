@@ -113,7 +113,7 @@ var toDate = function(datestring) {
 };
 
 var filterRegexCharacter = function(string) {
-  _.each(['\\', '.', '(', ')', '[', ']', '^', '$'], function(c) {
+  _.each(['\\', '.', '(', ')', '[', ']', '^', '$', '+', '*'], function(c) {
      string = string.replace(new RegExp('\\' + c, 'g'), '\\' + c);
   });
   return string;

@@ -27,184 +27,184 @@
     
     <div class="container-fluid">
       
-      <div class="row" id="area-search">
+      <div class="row" id="searchForm">
       
-        <div class="col-xs-12">
-         
-          <form role="form" class="form-horizontal" action="/list/" method="POST">
-          
-					  <div class="form-group">
-					  
-					    <div class="col-lg-3">
-						    <label for="datetime.start">Date Time</label><br>
-						    <input type="datetime" class="form-control half-width" id="datetime.start" name="datetime.start" placeholder="Date Time Begin On">
-						    ~
-						    <input type="datetime" class="form-control half-width" id="datetime.end" name="datetime.end" placeholder="Date Time End On">
-					    </div>
-					    
-					    <div class="col-lg-3">
-						    <label for="method">Method</label>
-						    <select name="method" class="form-control" id="method">
-						       <option value="">...</option>
-						       <option value="GET">GET</option>
-						       <option value="POST">POST</option>
-						    </select>
-					    </div>
-					    
-					    <div class="col-lg-3">
-	              <label for="url">URL</label>
-	              <input type="url" class="form-control" id="url" name="url" placeholder="Enter URL">
-					    </div>
-					    
-					    <div class="col-lg-3">
-	              <label for="statusCode">Status Code</label>
-	              <select name="statusCode" class="form-control" id="statusCode">
-                   <option value="">...</option>
-	                 <option value="2XX">2XX</option>
-	                 <option value="3XX">3XX</option>
-	                 <option value="4XX">4XX</option>
-	                 <option value="5XX">5XX</option>
-	              </select>
-					    </div>
-              
-					  </div>
-					 
-            <div class="form-group">
-            
-              <div class="col-lg-3">
-	              <label for="user">User</label>
-	              <input type="text" class="form-control" id="user" name="user" placeholder="Enter User">
-              </div>
-
-	            <div class="col-lg-3">
-	              <label for="remoteUser">Remote User</label>
-	              <input type="text" class="form-control" id="remoteUser" name="remoteUser" placeholder="Enter Remote User">
-	            </div>
-            
-              <div class="col-lg-3">
-                <label for="elapsedSeconds.start.float">Elapsed Seconds</label><br>
-	              <input type="text" class="form-control half-width" id="elapsedSeconds.start.float" name="elapsedSeconds.start.float">
-                ~
-	              <input type="text" class="form-control half-width" id="elapsedSeconds.end.float" name="elapsedSeconds.end.float">
-              </div>
-
-              <div class="col-lg-3">
-	              <label for="elapsedMillis.start.int">Elapsed Milliseconds</label><br>
-	                <input type="text" class="form-control half-width" id="elapsedMillis.start.int" name="elapsedMillis.start.int">
-	                ~
-	                <input type="text" class="form-control half-width" id="elapsedMillis.end.int" name="elapsedMillis.end.int">
-	            </div>
-	            
-            </div>
-            
-            
-					  <div class="form-group">
-              
-              <div class="col-lg-3">
-	              <label for="localIP">Local IP</label>
-	              <input type="text" class="form-control" id="localIP" name="localIP" placeholder="Enter xxx.xxx.xxx.xxx">
-              </div>
-              
-              <div class="col-lg-3">
-                <label for="localPort.int">Local Port</label>
-                <input type="text" class="form-control" id="localPort.int" name="localPort.int" placeholder="Enter Local Port">
-              </div>
-              
-              <div class="col-lg-3">
-                <label for="serverName">Server Name</label>
-                <input type="text" class="form-control" id="serverName" name="serverName" placeholder="Enter Server Name">
-              </div>
-              
-            </div>
-            
-            
-            <div class="form-group">
-              <div class="col-lg-3">
-                <label for="remoteIP">Remote IP</label>
-                <input type="text" class="form-control" id="remoteIP" name="remoteIP" placeholder="Enter xxx.xxx.xxx.xxx">
-              </div>
-              
-              <div class="col-lg-3">
-                <label for="remoteHost">Remote Host</label>
-                <input type="text" class="form-control" id="remoteHost" name="remoteHost" placeholder="Enter Remote Host">
-              </div>
-              
-              <div class="col-lg-3">
-	              <label for="protocol">Protocol</label>
-	              <input type="text" class="form-control" id="protocol" name="protocol" placeholder="Enter Protocol">
-	            </div>
-            
-            </div>
-            
-            <div class="form-group">
-            
-						  <div class="col-lg-3">
-	              <label for="bytesSent.start.int">Bytes Sent</label><br />
-	              <input type="text" class="form-control half-width" id="bytesSent.start.int" name="bytesSent.start.int">
-	              ~
-	              <input type="text" class="form-control half-width" id="bytesSent.end.int" name="bytesSent.end.int">
-	            </div>
-	            
-						  <div class="col-lg-3">
-	              <label for="thread">Thread</label>
-	              <input type="text" class="form-control" id="thread" name="thread" placeholder="Enter Thread Name">
-	            </div>
-            
-              <div class="col-lg-3">
-                <label for="sessionId">Session ID</label>
-                <input type="text" class="form-control" id="sessionId" name="sessionId" placeholder="Enter SessionID">
-              </div>
-              
-            </div>
-            
-					  <div class="form-group">
+        <div class="row">
+        
+	        <div class="col-xs-12" id="conditions">
+	         
+	          <form role="form" class="form-horizontal" action="/list/" method="POST">
 	          
-	            <div class="col-lg-3">
-	              <label for="queryString">Query String</label>
-	              <input type="text" class="form-control" id="queryString" name="queryString" placeholder="Enter Query String">
+						  <div class="form-group">
+						  
+						    <div class="col-lg-3">
+							    <label for="datetime.start">Date Time</label><br>
+							    <input type="datetime" class="form-control half-width" id="datetime.start" name="datetime.start" placeholder="Date Time Begin On">
+							    ~
+							    <input type="datetime" class="form-control half-width" id="datetime.end" name="datetime.end" placeholder="Date Time End On">
+						    </div>
+						    
+						    <div class="col-lg-3">
+							    <label for="method">Method</label>
+							    <select name="method" class="form-control" id="method">
+							       <option value="">...</option>
+							       <option value="GET">GET</option>
+							       <option value="POST">POST</option>
+							    </select>
+						    </div>
+						    
+						    <div class="col-lg-3">
+		              <label for="url">URL</label>
+		              <input type="url" class="form-control" id="url" name="url" placeholder="Enter URL">
+						    </div>
+						    
+						    <div class="col-lg-3">
+		              <label for="statusCode">Status Code</label>
+		              <select name="statusCode" class="form-control" id="statusCode">
+	                   <option value="">...</option>
+		                 <option value="2XX">2XX</option>
+		                 <option value="3XX">3XX</option>
+		                 <option value="4XX">4XX</option>
+		                 <option value="5XX">5XX</option>
+		              </select>
+						    </div>
+	              
+						  </div>
+						 
+	            <div class="form-group">
+	            
+	              <div class="col-lg-3">
+		              <label for="user">User</label>
+		              <input type="text" class="form-control" id="user" name="user" placeholder="Enter User">
+	              </div>
+	
+		            <div class="col-lg-3">
+		              <label for="remoteUser">Remote User</label>
+		              <input type="text" class="form-control" id="remoteUser" name="remoteUser" placeholder="Enter Remote User">
+		            </div>
+	            
+	              <div class="col-lg-3">
+	                <label for="elapsedSeconds.start.float">Elapsed Seconds</label><br>
+		              <input type="text" class="form-control half-width" id="elapsedSeconds.start.float" name="elapsedSeconds.start.float">
+	                ~
+		              <input type="text" class="form-control half-width" id="elapsedSeconds.end.float" name="elapsedSeconds.end.float">
+	              </div>
+	
+	              <div class="col-lg-3">
+		              <label for="elapsedMillis.start.int">Elapsed Milliseconds</label><br>
+		                <input type="text" class="form-control half-width" id="elapsedMillis.start.int" name="elapsedMillis.start.int">
+		                ~
+		                <input type="text" class="form-control half-width" id="elapsedMillis.end.int" name="elapsedMillis.end.int">
+		            </div>
+		            
 	            </div>
 	            
-						  <div class="col-lg-3">
-	              <label for="line1st">First line of the request</label>
-	              <input type="text" class="form-control" id="line1st" name="line1st" placeholder="First line of the request">
+	            
+						  <div class="form-group">
+	              
+	              <div class="col-lg-3">
+		              <label for="localIP">Local IP</label>
+		              <input type="text" class="form-control" id="localIP" name="localIP" placeholder="Enter xxx.xxx.xxx.xxx">
+	              </div>
+	              
+	              <div class="col-lg-3">
+	                <label for="localPort.int">Local Port</label>
+	                <input type="text" class="form-control" id="localPort.int" name="localPort.int" placeholder="Enter Local Port">
+	              </div>
+	              
+	              <div class="col-lg-3">
+	                <label for="serverName">Server Name</label>
+	                <input type="text" class="form-control" id="serverName" name="serverName" placeholder="Enter Server Name">
+	              </div>
+	              
 	            </div>
 	            
-	            <div class="col-lg-6">
-	              <label for="params.key">Request Params</label>
-	              <select class="form-control" id="params.key" data-role="tagsinput" multiple="multiple" placeholder="Add Param: xxx=yyy">
-	              </select>
+	            
+	            <div class="form-group">
+	              <div class="col-lg-3">
+	                <label for="remoteIP">Remote IP</label>
+	                <input type="text" class="form-control" id="remoteIP" name="remoteIP" placeholder="Enter xxx.xxx.xxx.xxx">
+	              </div>
+	              
+	              <div class="col-lg-3">
+	                <label for="remoteHost">Remote Host</label>
+	                <input type="text" class="form-control" id="remoteHost" name="remoteHost" placeholder="Enter Remote Host">
+	              </div>
+	              
+	              <div class="col-lg-3">
+		              <label for="protocol">Protocol</label>
+		              <input type="text" class="form-control" id="protocol" name="protocol" placeholder="Enter Protocol">
+		            </div>
+	            
 	            </div>
 	            
-					  </div>
-					  
-					</form>
-					
-        </div> <!-- search form area -->
-      
+	            <div class="form-group">
+	            
+							  <div class="col-lg-3">
+		              <label for="bytesSent.start.int">Bytes Sent</label><br />
+		              <input type="text" class="form-control half-width" id="bytesSent.start.int" name="bytesSent.start.int">
+		              ~
+		              <input type="text" class="form-control half-width" id="bytesSent.end.int" name="bytesSent.end.int">
+		            </div>
+		            
+							  <div class="col-lg-3">
+		              <label for="thread">Thread</label>
+		              <input type="text" class="form-control" id="thread" name="thread" placeholder="Enter Thread Name">
+		            </div>
+	            
+	              <div class="col-lg-3">
+	                <label for="sessionId">Session ID</label>
+	                <input type="text" class="form-control" id="sessionId" name="sessionId" placeholder="Enter SessionID">
+	              </div>
+	              
+	            </div>
+	            
+						  <div class="form-group">
+		          
+		            <div class="col-lg-3">
+		              <label for="queryString">Query String</label>
+		              <input type="text" class="form-control" id="queryString" name="queryString" placeholder="Enter Query String">
+		            </div>
+		            
+							  <div class="col-lg-3">
+		              <label for="line1st">First line of the request</label>
+		              <input type="text" class="form-control" id="line1st" name="line1st" placeholder="First line of the request">
+		            </div>
+		            
+		            <div class="col-lg-6">
+		              <label for="params.key">Request Params</label>
+		              <select class="form-control" id="params.key" data-role="tagsinput" multiple="multiple" placeholder="Add Param: xxx=yyy">
+		              </select>
+		            </div>
+		            
+						  </div>
+						  
+						</form>
+						
+	        </div> <!-- search form area -->
+        </div> <!-- .row -->
+        
+        
+	      <div class="row">
+	        
+	        <div class="col-lg-offset-4 col-lg-4 text-center">
+	          <button id="btn-do-query" class="btn btn-primary">Query</button>
+	         <!-- <button id="btn-chart" class="btn btn-primary">Chart</button> -->
+	          <button id="btn-toggle-form" class="btn btn-default">Close</button>
+	        </div>
+	        
+	        <div id="pagination" class="col-lg-4 text-right">
+	          <ul class="pagination" style="margin:0px"></ul>
+	        </div>
+	        
+	      </div>
+	      
       </div>
 
-      <div id="area-result" class="row">
-        
-        <div class="col-lg-offset-4 col-lg-4 text-center">
-          <button id="btn-do-query" class="btn btn-primary">Query</button>
-<!--           <button id="btn-chart" class="btn btn-primary">Chart</button> -->
-          
-          <button id="btn-toggle-query-form" class="btn btn-default">Close</button>
-        </div>
-        
-        <div class="col-lg-4 text-right">
-          <ul class="pagination" style="margin:0px">
-            <li><a href="#">&laquo;</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">&raquo;</a></li>
-          </ul><!-- pagination area -->
-        </div>
-        
-        <div class="col-lg-12">
+       
+       <div class="row">
+       
+        <div id="logList" class="col-lg-12">
         
           <div class="table-responsive">
             <table id="logs" class="table table-striped">
@@ -256,14 +256,33 @@
 		</div> <!-- detail info Modal -->
 
   </body>
+
   <script src='/jquery/dist/jquery.min.js' type='text/javascript'></script>
   <script src='/bootstrap/dist/js/bootstrap.min.js' type='text/javascript'></script>
   <script src='/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js' type='text/javascript'></script>
   <script src='/bootstrap-datepicker/js/bootstrap-datepicker.js' type='text/javascript'></script>
-  
   <script src='/underscore/underscore.js'></script>
   <script src='/backbone/backbone.js'></script>
-  
+
+  <script>
+  var require = {
+      baseUrl : '/',
+      paths : {
+        'domReady'      : 'requirejs-domready/domReady',
+        'text'          : 'requirejs-text/text'
+      }
+  };
+  </script>
   <script src='/requirejs/require.js'></script>
-  <script src='/javascripts/index.js' type='text/javascript'></script>
+  
+  <script>
+  require(['javascripts/index'], function(App) {
+    
+    new App({
+      el : $('body')
+    });
+    
+  });
+  </script>
+  
 </html>
