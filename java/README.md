@@ -42,7 +42,7 @@ And some attributes differs from ``AccessLogValve``:
 | dbName      | Which DB to store logs, default is ``tomcat`` |
 | collName    | Which collection to store logs, default is ``tomcat_access_logs``      |
 | excludes    | Default is ``".js,.css,jpg,.jpeg,.gif,.png,.bmp,.gif,.html,.htm"``. Don't log the URI request matches some pattern    |
-| rotatable   | If rotatable is on, ``MongoDBAccessLogValve`` will try to create a capped collection with the size of ``capSize``(default is 1024, in megabytes) if the collection is not exist     |
+| rotatable   | If rotatable is on, ``MongoDBAccessLogValve`` will try to create a capped collection with the size of ``capSize``(default is 1024, in megabytes) if the collection does not exist     |
 | capSize     | The size of capped collection, in megabytes |
 | rotateCount | **Not supported** |
 | recordError | Default is true. ``MongoAccessLogValve`` will store exception stack traces in ``error`` key when exception throws |
