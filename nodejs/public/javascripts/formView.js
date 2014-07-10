@@ -3,8 +3,9 @@ define([], function() {
   return Backbone.View.extend({
     
     events : {
-      'click #btn-toggle-form' : 'toogleQueryForm',
-      'click #btn-do-query' : 'query'
+      'click #btn-toggle-form' : 'toggle',
+      'click #btn-do-query' : 'query',
+      'keypress form' : 'keypress'
     },
     
     initialize : function(options) {
@@ -21,7 +22,7 @@ define([], function() {
       
     },
     
-    toogleQueryForm : function(event) {
+    toggle : function(event) {
       var that = this;
       var $toggleBtn = this.$toggleBtn;
       
@@ -107,8 +108,13 @@ define([], function() {
       
       this.eventBus.trigger('log:search', { params : params } );
       
-    }
+    },
     
+    keypress : function(event) {
+      if (event.keyCode == 13) {
+        this.query();
+      }
+    }
   });
   
 });

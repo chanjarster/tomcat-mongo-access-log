@@ -29,7 +29,9 @@ define(
             eventBus : this.eventBus
           });
          
-          // sticky search bar to top if scroll down over it
+          /*
+           * sticky search bar to top if scroll down over it
+           */ 
           var $window = $(window);
           var $stickyBar = $('#stickyBar');
           var elTop = $stickyBar.offset().top;
