@@ -136,3 +136,6 @@ body {
   z-index: 1;
 }
 
+.stickyBarBuddy {
+	padding-top: 39px;
+}
