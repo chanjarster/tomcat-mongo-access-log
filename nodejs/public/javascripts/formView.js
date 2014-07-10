@@ -22,15 +22,17 @@ define([], function() {
     },
     
     toogleQueryForm : function(event) {
-
+      var that = this;
       var $toggleBtn = this.$toggleBtn;
       
       this.$conditions.slideToggle(null, function() {
         if ($(this).is(':hidden')) {
           $toggleBtn.html('Open');
+          that.eventBus.trigger('view:scrollToBtn');
         } else {
           $toggleBtn.html('Close');
         }
+        
       });
     
     },
@@ -104,8 +106,8 @@ define([], function() {
       });
       
       this.eventBus.trigger('log:search', { params : params } );
+      
     }
-    
     
   });
   

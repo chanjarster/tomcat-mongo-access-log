@@ -104,6 +104,9 @@ body {
   border-radius: 50%;
 }
 
+/*
+ * custom css
+ */
 .half-width {
 	width : 45%;
 	display : inline;
@@ -124,3 +127,12 @@ body {
 #detailModal td {
 	vertical-align: top;
 }
+
+.stickyBar {
+	background: #FFFFFF;
+  position: fixed;
+  top: 50px;
+  width: 100%;
+  z-index: 1;
+}
+

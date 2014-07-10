@@ -26,6 +26,7 @@ define(['javascripts/logView'], function(LogView) {
         this.$logs.append(new LogView({ model : log }).render());
       }, this);
       
+      this.eventBus.trigger('view:scrollToBtn');
     }
     
   });
