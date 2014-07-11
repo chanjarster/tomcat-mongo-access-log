@@ -1,9 +1,9 @@
 define(
     [
-      'domReady', 'javascripts/formView', 'javascripts/logListView', 'javascripts/paginationView'
+      'javascripts/formView', 'javascripts/logListView', 'javascripts/paginationView'
     ],
     
-    function(domReady, FormView, LogListView, PaginationView) {
+    function(FormView, LogListView, PaginationView) {
       
       return Backbone.View.extend({
        

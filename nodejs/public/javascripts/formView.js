@@ -42,6 +42,13 @@ define([], function() {
       
       var params = {};
       
+      /*
+       * name{type}[condition]
+       * type : int, float, date, str
+       * condition : like, eq, gte, lte, regex, gt, lt
+       */
+      
+      
       // build query condition
       var paramArr = this.$form.serialize().split('&');
       for (var i = 0; i < paramArr.length; i++) {
