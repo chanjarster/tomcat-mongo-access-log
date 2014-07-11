@@ -1,7 +1,7 @@
 Tomcat Mongo Access Log
 =======================
 
-Tomcat Mongo Access Log can be used to save tomcat access log to mongodb. 
+Tomcat Mongo Access Log can be used to save tomcat access log to mongodb. Before start you should got mongodb installed ([MongoDB installation guide](http://docs.mongodb.org/manual/installation/))
 
 The project comes with two subprojects:
 
