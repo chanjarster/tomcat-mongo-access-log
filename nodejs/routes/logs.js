@@ -1,6 +1,7 @@
 var express = require('express');
 var moment = require('moment');
 var _ = require('underscore');
+var mg = require('../util/mongoutil');
 
 var config = require("../config.json");
 var MongoClient = require('mongodb').MongoClient;
@@ -33,77 +34,31 @@ router.get('/', function(req, res) {
   var pageNo = parseInt(req.param('pageNo') ? req.param('pageNo') : '1');
   var limit = parseInt(req.param('limit') ? req.param('limit') : '20');
   
-  _.each(queryObject, function(value, key, queryObject) {
+  var condition = mg.parse(queryObject);
+  collection.find(condition).count(function(err, count) {
     
-    // convert datetime to Date object
-    if (key == 'datetime') {
-      if (queryObject['datetime']['$gte']) {
-        queryObject['datetime']['$gte'] = toDate(queryObject['datetime']['$gte']);
-      }
-      if (queryObject['datetime']['$lte']) {
-        queryObject['datetime']['$lte'] = toDate(queryObject['datetime']['$lte']);
-      }
-      return;
-    }
-    
-    if (key == 'statusCode') {
-      if ('1XX' == queryObject['statusCode']) {
-        queryObject['statusCode'] = {};
-        queryObject['statusCode']['$gte'] = 100;
-        queryObject['statusCode']['$lte'] = 199;
-      }
-      if ('2XX' == queryObject['statusCode']) {
-        queryObject['statusCode'] = {};
-        queryObject['statusCode']['$gte'] = 200;
-        queryObject['statusCode']['$lte'] = 299;
-      }
-      if ('3XX' == queryObject['statusCode']) {
-        queryObject['statusCode'] = {};
-        queryObject['statusCode']['$gte'] = 300;
-        queryObject['statusCode']['$lte'] = 399;
-      }
-      if ('4XX' == queryObject['statusCode']) {
-        queryObject['statusCode'] = {};
-        queryObject['statusCode']['$gte'] = 400;
-        queryObject['statusCode']['$lte'] = 499;
-      }
-      if ('5XX' == queryObject['statusCode']) {
-        queryObject['statusCode'] = {};
-        queryObject['statusCode']['$gte'] = 500;
-        queryObject['statusCode']['$lte'] = 599;
-      }
-      return;
-    }
-    
-    // convert string to regex
-    if (_.isString(value)) {
-      queryObject[key] = new RegExp(filterRegexCharacter(value));
-    }
-    
-  });
-  
-  console.log(queryObject);
-  
-  collection.find(queryObject).count(function(err, count) {
-    
-    collection.find(queryObject).skip((pageNo - 1) * limit).limit(limit).sort( { datetime : -1 } ).toArray(function(err, results) {
-      if (err) {
-        throw err;
-      }
-      
-      for(var i = 0; i < results.length; i++) {
-        results[i].datetime = moment(results[i].datetime).format('YYYY-MM-DD HH:mm:ss');
-      }
-      
-      var paginationList = {
-          logs : results,
-          pageNo : pageNo,
-          limit : limit,
-          count : count
-      };
-      res.json(paginationList);
+    collection
+      .find(condition)
+      .skip((pageNo - 1) * limit)
+      .limit(limit).sort( { datetime : -1 } )
+      .toArray(function(err, results) {
+          if (err) {
+            throw err;
+          }
+          
+          for(var i = 0; i < results.length; i++) {
+            results[i].datetime = moment(results[i].datetime).format('YYYY-MM-DD HH:mm:ss');
+          }
+          
+          var paginationList = {
+              logs : results,
+              pageNo : pageNo,
+              limit : limit,
+              count : count
+          };
+          res.json(paginationList);
     });
-    
+        
   });
   
 });

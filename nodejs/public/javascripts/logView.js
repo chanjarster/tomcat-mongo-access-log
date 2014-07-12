@@ -12,7 +12,7 @@ define(
         detailTmpl : _.template(detailTemplate),
         
         events : {
-          'click td' : 'info'
+          'click a' : 'info'
         },
         
         initialize : function(options) {
@@ -24,9 +24,10 @@ define(
           return this.$el;
         },
         
-        info : function() {
+        info : function(event) {
           $("#detailModal table").html(this.detailTmpl( { d : this.model }));
           $("#detailModal").modal();
+          event.preventDefault();
         }
         
       });

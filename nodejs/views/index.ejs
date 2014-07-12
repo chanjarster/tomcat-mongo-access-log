@@ -43,9 +43,9 @@
 
 								<div class="col-lg-3">
 									<label>Date Time</label><br>
-									<input type="datetime" class="form-control" name="datetime{date}[gte]" placeholder="Begin On">
+									<input type="datetime" class="form-control half-width" name="datetime{date}[gte]" placeholder="Begin On">
 									~
-									<input type="datetime" class="form-control" name="datetime{date}[lte]" placeholder="End On">
+									<input type="datetime" class="form-control half-width" name="datetime{date}[lte]" placeholder="End On">
 								</div>
 
 								<div class="col-lg-3">
@@ -168,7 +168,7 @@
 
 								<div class="col-lg-3">
 									<label>Request Params</label>
-									<select class="form-control" data-role="tagsinput" multiple="multiple" placeholder="Add Param: xxx=yyy"></select>
+									<select class="form-control" id="params.sub" data-role="tagsinput" multiple="multiple" placeholder="Add Param: xxx=yyy"></select>
 								</div>
 
 							</div>
@@ -234,8 +234,7 @@
 	</div>
 
 
-	<div class="modal fade" id="detailModal" tabindex="-1" role="dialog"
-		aria-labelledby="" requestDetail"" aria-hidden="true">
+	<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="" requestDetail"" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -259,8 +258,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- detail info Modal -->
+	</div><!-- detail info Modal -->
 
 </body>
 
