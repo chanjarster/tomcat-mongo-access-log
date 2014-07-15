@@ -10,7 +10,7 @@ This project is inspired by two articles:
 
 ## Usage
 
-Clone the code and built it with maven, copy the ``tomcat-mongo-access-log-${version}.jar`` to ``${TOMCAT_HOME}/lib``.
+Have a Apache Tomcat 7.0.54(or above) installed. Clone the code and built it with maven, copy the ``tomcat-mongo-access-log-${version}.jar`` to ``${TOMCAT_HOME}/lib``.
 
 Configure ``MongoAccessLogValve`` in ``${tomcat}/conf/server.xml``, ``${tomcat}/conf/context.xml`` or in a context file. 
 
