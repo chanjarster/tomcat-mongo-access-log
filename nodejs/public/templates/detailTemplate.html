@@ -102,7 +102,7 @@
     <td><strong>Request Params: </strong></td>
     <td colspan="3">
         <% _.each(d.params, function(value, key) { %>
-          <%- key.replace(/\$/g, '.') %>=<%- value %> <br>
+          <b><%- key.replace(/\$/g, '.') %></b>=<%- value %><br>
         <% }); %> 
     </td>
   </tr>
@@ -112,7 +112,7 @@
     <td><strong>Request Headers: </strong></td>
     <td colspan="3">
         <% _.each(d.requestHeaders, function(value, key) { %>
-          <%- key.replace(/\$/g, '.') %>=<%- value %> <br>
+          <b><%- key.replace(/\$/g, '.') %></b>=<%- value %><br>
         <% }); %> 
     </td>
   </tr>
@@ -122,7 +122,7 @@
     <td><strong>Response Headers: </strong></td>
     <td colspan="3">
         <% _.each(d.responseHeaders, function(value, key) { %>
-          <%- key.replace(/\$/g, '.') %>=<%- value %> <br>
+          <b><%- key.replace(/\$/g, '.') %></b>=<%- value %><br>
         <% }); %> 
     </td>
   </tr>
@@ -132,7 +132,7 @@
     <td><strong>Cookies: </strong></td>
     <td colspan="3">
         <% _.each(d.cookies, function(value, key) { %>
-          <%- key.replace(/\$/g, '.') %>=<%- value %> <br>
+          <b><%- key.replace(/\$/g, '.') %></b>=<%- value %><br>
         <% }); %> 
     </td>
   </tr>
@@ -142,7 +142,7 @@
     <td><strong>Request Attrs:: </strong></td>
     <td colspan="3">
         <% _.each(d.requestAttrs, function(value, key) { %>
-          <%- key.replace(/\$/g, '.') %>=<%- value %> <br>
+          <b><%- key.replace(/\$/g, '.') %></b>=<%- value %><br>
         <% }); %> 
     </td>
   </tr>
@@ -152,7 +152,7 @@
     <td><strong>Session Attrs:: </strong></td>
     <td colspan="3">
         <% _.each(d.sessionAttrs, function(value, key) { %>
-          <%- key.replace(/\$/g, '.') %>=<%- value %> <br>
+          <b><%- key.replace(/\$/g, '.') %></b>=<%- value %><br>
         <% }); %> 
     </td>
   </tr>
