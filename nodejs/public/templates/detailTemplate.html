@@ -97,20 +97,70 @@
         <%- d.line1st %>
     </td>
   </tr>
+  <% if(d.params) { %>
   <tr>
     <td><strong>Request Params: </strong></td>
     <td colspan="3">
-      <% if(d.params) { %>
         <% _.each(d.params, function(value, key) { %>
           <%- key.replace(/\$/g, '.') %>=<%- value %> <br>
         <% }); %> 
-      <% } %>
     </td>
   </tr>
+  <% } %>
+  <% if(d.requestHeaders) { %>
+  <tr>
+    <td><strong>Request Headers: </strong></td>
+    <td colspan="3">
+        <% _.each(d.requestHeaders, function(value, key) { %>
+          <%- key.replace(/\$/g, '.') %>=<%- value %> <br>
+        <% }); %> 
+    </td>
+  </tr>
+  <% } %>
+  <% if(d.responseHeaders) { %>
+  <tr>
+    <td><strong>Response Headers: </strong></td>
+    <td colspan="3">
+        <% _.each(d.responseHeaders, function(value, key) { %>
+          <%- key.replace(/\$/g, '.') %>=<%- value %> <br>
+        <% }); %> 
+    </td>
+  </tr>
+  <% } %>
+  <% if(d.cookies) { %>
+  <tr>
+    <td><strong>Cookies: </strong></td>
+    <td colspan="3">
+        <% _.each(d.cookies, function(value, key) { %>
+          <%- key.replace(/\$/g, '.') %>=<%- value %> <br>
+        <% }); %> 
+    </td>
+  </tr>
+  <% } %>
+  <% if(d.requestAttrs) { %>
+  <tr>
+    <td><strong>Request Attrs:: </strong></td>
+    <td colspan="3">
+        <% _.each(d.requestAttrs, function(value, key) { %>
+          <%- key.replace(/\$/g, '.') %>=<%- value %> <br>
+        <% }); %> 
+    </td>
+  </tr>
+  <% } %>
+  <% if(d.sessionAttrs) { %>
+  <tr>
+    <td><strong>Session Attrs:: </strong></td>
+    <td colspan="3">
+        <% _.each(d.sessionAttrs, function(value, key) { %>
+          <%- key.replace(/\$/g, '.') %>=<%- value %> <br>
+        <% }); %> 
+    </td>
+  </tr>
+  <% } %>
   <% if(d.error) { %>
   <tr>
     <td><strong>Error: </strong></td>
-    <td colspan="3"><pre><%= d.error %></pre></td>
+    <td colspan="3"><pre><%- d.error %></pre></td>
   </tr>
   <% } %>
 </tbody>

@@ -53,29 +53,35 @@ define([], function() {
         params[key] = value;
       });
       
-      // build post params query condition
-      _.each($("#params\\.sub").tagsinput('items'), function(item, value) {
-        var keyValue = item.split('=');
-        var key = keyValue[0].replace(/\./g, '$');
-        var value = keyValue[1];
-        if (!value) {
-          return;
-        }
+      _.each(['#params\\.sub', '#requestHeaders\\.sub', '#responseHeaders\\.sub', 
+              '#cookies\\.sub', '#requestAttrs\\.sub', '#sessionAttrs\\.sub'], function(selector, index) {
+        var pk = selector.replace('\\', '').replace('#', '').replace('.sub', '');
         
-        var ckey = 'params.' + key + '{str}[eq]';
-        
-        if (!params[ckey]) {
-          params[ckey] = value;
-        } else {
-          if(!_.isArray(params[ckey])) {
-            var oldVal = params[ckey];
-            params[ckey] = [];
-            params[ckey].push(oldVal);
+        // build post params query condition
+        _.each($(selector).tagsinput('items'), function(item, value) {
+          var keyValue = item.split('=');
+          var key = keyValue[0].replace(/\./g, '$');
+          var value = keyValue[1].replace(/^\s/g, '').replace(/\s$/g, '');
+          if (!value) {
+            return;
           }
-          params[ckey].push(value);
-        }
+          
+          var ckey = pk + '.' + key + '{re}[eq]';
+          
+          if (!params[ckey]) {
+            params[ckey] = value;
+          } else {
+            if(!_.isArray(params[ckey])) {
+              var oldVal = params[ckey];
+              params[ckey] = [];
+              params[ckey].push(oldVal);
+            }
+            params[ckey].push(value);
+          }
+        });
       });
       
+      console.log(params);
       this.eventBus.trigger('log:search', { params : params } );
       
     },
