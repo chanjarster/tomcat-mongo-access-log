@@ -1,6 +1,0 @@
-{
-  "mongo" : {
-    "url" : "mongodb://localhost/logs",
-    "collection" : "access_logs"
-  }
-}

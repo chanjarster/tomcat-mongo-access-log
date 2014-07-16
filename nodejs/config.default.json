@@ -1,0 +1,6 @@
+{
+  "mongo" : {
+    "url" : "mongodburl",
+    "collection" : "collection name"
+  }
+}
