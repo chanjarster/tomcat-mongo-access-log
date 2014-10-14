@@ -18,7 +18,7 @@ Besides, you can also use [Tomcat Mongo Access Log Console](https://github.com/c
 4. Configure ``MongoAccessLogValve`` in ``${tomcat}/conf/server.xml``, ``${tomcat}/conf/context.xml`` or in a context file. Example:
 ```xml
 <Valve 
-    className="chanjarster.tomcat.valves.MongoAccessLogValve" 
+    className="me.chanjar.tomcat.valves.MongoAccessLogValve" 
     uri="mongodb://localhost/tomcat"
     pattern="default" />
 ```
