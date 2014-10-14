@@ -1,4 +1,4 @@
-package chanjarster.tomcat.valves;
+package me.chanjar.tomcat.valves;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;

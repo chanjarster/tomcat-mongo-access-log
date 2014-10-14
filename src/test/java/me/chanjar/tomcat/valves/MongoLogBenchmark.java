@@ -1,4 +1,4 @@
-package chanjarster.tomcat.valves;
+package me.chanjar.tomcat.valves;
 
 import java.net.UnknownHostException;
 
@@ -10,7 +10,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.junit.Test;
 
-import chanjarster.tomcat.util.PostGenerator;
+import me.chanjar.tomcat.util.PostGenerator;
 
 import com.mongodb.DB;
 import com.mongodb.MongoClient;

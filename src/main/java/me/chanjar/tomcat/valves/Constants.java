@@ -1,7 +1,7 @@
-package chanjarster.tomcat.valves;
+package me.chanjar.tomcat.valves;
 
 public class Constants {
-  public static final String Package = "chanjarster.tomcat.valves";
+  public static final String Package = "me.chanjar.tomcat.valves";
 
   //Constants for the AccessLogValve class
   public static final class MongoAccessLog {

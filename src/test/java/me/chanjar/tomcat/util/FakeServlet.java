@@ -1,4 +1,4 @@
-package chanjarster.tomcat.util;
+package me.chanjar.tomcat.util;
 
 import java.io.IOException;
 import java.util.Random;

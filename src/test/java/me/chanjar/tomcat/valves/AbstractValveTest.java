@@ -1,12 +1,11 @@
-package chanjarster.tomcat.valves;
+package me.chanjar.tomcat.valves;
 
+import me.chanjar.tomcat.util.FakeServlet;
 import org.apache.catalina.Context;
 import org.apache.catalina.deploy.FilterDef;
 import org.apache.catalina.deploy.FilterMap;
 import org.apache.catalina.startup.Tomcat;
 import org.apache.catalina.startup.TomcatBaseTest;
-
-import chanjarster.tomcat.util.FakeServlet;
 
 public abstract class AbstractValveTest extends TomcatBaseTest {
 

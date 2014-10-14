@@ -1,4 +1,4 @@
-package chanjarster.tomcat.valves;
+package me.chanjar.tomcat.valves;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -38,7 +38,7 @@ import com.mongodb.WriteConcern;
 
 
 /**
- * Documents are at <a href="https://github.com/chanjarster/tomcat-mongo-access-log">Github</a>
+ * Documentation: <a href="https://github.com/chanjarster/tomcat-mongo-access-log">Github</a>
  * @author Dianiel Qian(chanjarster@gmail.com)
  *
  */
@@ -49,7 +49,7 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
   /**
    * The string manager for this package.
    */
-  protected static final StringManager sm = StringManager.getManager(chanjarster.tomcat.valves.Constants.Package);
+  protected static final StringManager sm = StringManager.getManager(me.chanjar.tomcat.valves.Constants.Package);
   
   //------------------------------------------------------ Constructor
   public MongoAccessLogValve() {
@@ -199,10 +199,10 @@ public class MongoAccessLogValve extends ValveBase implements AccessLog {
           this.pattern = Constants.AccessLog.COMMON_PATTERN;
       } else if (pattern.equals(Constants.AccessLog.COMBINED_ALIAS)) {
           this.pattern = Constants.AccessLog.COMBINED_PATTERN;
-      } else if (pattern.equals(chanjarster.tomcat.valves.Constants.MongoAccessLog.DEFAULT_ALIAS)) {
-          this.pattern = chanjarster.tomcat.valves.Constants.MongoAccessLog.DEFAULT_PATTERN;
-      } else if (pattern.equals(chanjarster.tomcat.valves.Constants.MongoAccessLog.ALL_ALIAS)) {
-        this.pattern = chanjarster.tomcat.valves.Constants.MongoAccessLog.ALL_PATTERN;
+      } else if (pattern.equals(me.chanjar.tomcat.valves.Constants.MongoAccessLog.DEFAULT_ALIAS)) {
+          this.pattern = me.chanjar.tomcat.valves.Constants.MongoAccessLog.DEFAULT_PATTERN;
+      } else if (pattern.equals(me.chanjar.tomcat.valves.Constants.MongoAccessLog.ALL_ALIAS)) {
+        this.pattern = me.chanjar.tomcat.valves.Constants.MongoAccessLog.ALL_PATTERN;
       } else {
           this.pattern = pattern;
       }
