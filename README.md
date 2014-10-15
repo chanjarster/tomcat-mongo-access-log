@@ -23,6 +23,16 @@ Besides, you can also use [Tomcat Mongo Access Log Console](https://github.com/c
     pattern="default" />
 ```
 
+If you want to develop based on this project, you can add following maven dependency to ``pom.xml``:
+
+```xml
+<dependency>
+  <groupId>me.chanjar.weixin</groupId>
+  <artifactId>weixin-java-tools</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
 ## Attributes
 
 ``MongoAccessLogValve`` supports the following configuration attributes of [AccessLogValve](http://tomcat.apache.org/tomcat-7.0-doc/config/valve.html#Access_Log_Valve) :
