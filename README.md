@@ -27,8 +27,8 @@ If you want to develop based on this project, you can add following maven depend
 
 ```xml
 <dependency>
-  <groupId>me.chanjar.weixin</groupId>
-  <artifactId>weixin-java-tools</artifactId>
+  <groupId>me.chanjar</groupId>
+  <artifactId>tomcat-mongo-access-log</artifactId>
   <version>1.0.0</version>
 </dependency>
 ```
